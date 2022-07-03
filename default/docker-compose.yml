@@ -22,7 +22,7 @@ services:
       deploy:
         restart_policy:
           condition: on-failure
-          delay: 5s
+          delay: 15s
           max_attempts: 3
           window: 120s
       environment:
@@ -41,16 +41,16 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 5s
+        delay: 30s
         max_attempts: 3
         window: 120s
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: eurekaserver:http://eurekaserver:8070/eureka
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
     
   loans:
-    image: manmohankumar/loans:v2.0
+    image: manmohankumar/loans:latest
     mem_limit: 700m
     ports:
       - "8090:8090"
@@ -61,16 +61,16 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 5s
+        delay: 30s
         max_attempts: 3
         window: 120s
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: eurekaserver:http://eurekaserver:8070/eureka
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
     
   cards:
-    image: manmohankumar/cards:v2.0
+    image: manmohankumar/cards:latest
     mem_limit: 700m
     ports:
       - "9000:9000"
@@ -81,13 +81,13 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 5s
+        delay: 30s
         max_attempts: 3
         window: 120s
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: eurekaserver:http://eurekaserver:8070/eureka
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
     
 networks:
   securebank-network:
